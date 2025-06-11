@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/expense_navigation"
+    app:startDestination="@id/itemReport">
+
+    <fragment
+        android:id="@+id/itemReport"
+        android:name="com.ubaya.dawnbringer.view.Report"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_itemReport_to_itemExpense"
+            app:destination="@id/itemExpense" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemBudgetting"
+        android:name="com.ubaya.dawnbringer.view.Budgetting"
+        android:label="fragment_budgetting"
+        tools:layout="@layout/fragment_budgetting" >
+        <action
+            android:id="@+id/action_itemBudgetting_to_itemReport"
+            app:destination="@id/itemReport" />
+        <action
+            android:id="@+id/action_itemBudgetting_to_itemExpense"
+            app:destination="@id/itemExpense" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.ubaya.dawnbringer.view.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_itemProfile_to_itemExpense"
+            app:destination="@id/itemExpense" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemExpense"
+        android:name="com.ubaya.dawnbringer.view.ExpenseTrack"
+        android:label="fragment_expense_track"
+        tools:layout="@layout/fragment_expense_track" >
+        <action
+            android:id="@+id/action_itemExpense_to_itemBudgetting"
+            app:destination="@id/itemBudgetting" />
+        <action
+            android:id="@+id/action_itemExpense_to_itemReport"
+            app:destination="@id/itemReport" />
+        <action
+            android:id="@+id/action_itemExpense_to_itemProfile"
+            app:destination="@id/itemProfile" />
+    </fragment>
+</navigation>
