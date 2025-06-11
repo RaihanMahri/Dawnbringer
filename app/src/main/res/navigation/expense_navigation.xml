@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/expense_navigation"
-    app:startDestination="@id/itemReport">
+    app:startDestination="@id/login">
 
     <fragment
         android:id="@+id/itemReport"
@@ -49,5 +49,26 @@
         <action
             android:id="@+id/action_itemExpense_to_itemProfile"
             app:destination="@id/itemProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.ubaya.dawnbringer.view.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_itemBudgetting"
+            app:destination="@id/itemBudgetting" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.ubaya.dawnbringer.view.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login" />
     </fragment>
 </navigation>
