@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvExpenseDate"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:textColor="#888888"
+        android:textSize="14sp" />
+
+
+    <Spinner
+        android:id="@+id/spinnerBudget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBudget"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:progress="0"
+        android:max="100"
+        android:progressTint="#6200EE" />
+
+    <EditText
+        android:id="@+id/etExpenseNominal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="$ Nominal (akan dihitung otomatis)"
+        android:inputType="number"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/etExpenseNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes, i.e: Bayar Gojek/Gofood"
+        android:inputType="text"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnAddExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD EXPENSE"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#6200EE" />
+</LinearLayout>

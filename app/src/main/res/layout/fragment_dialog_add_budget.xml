@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Budget"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333"/>
+
+    <EditText
+        android:id="@+id/etBudgetName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Budget Name"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_input"
+        android:padding="12dp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etNominal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nominal"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rounded_input"
+        android:padding="12dp"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btnSaveBudget"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#6200EE"
+        android:text="ADD BUDGET"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+</LinearLayout>
