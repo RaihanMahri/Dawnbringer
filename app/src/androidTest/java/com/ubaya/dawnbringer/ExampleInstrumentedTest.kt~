@@ -21,5 +21,4 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.ubaya.dawnbringer", appContext.packageName)
     }
-    // TODO: Add tests here
 }
