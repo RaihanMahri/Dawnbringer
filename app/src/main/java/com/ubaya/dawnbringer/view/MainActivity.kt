@@ -2,12 +2,7 @@ package com.ubaya.dawnbringer.view
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,13 +27,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomNav, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.login -> bottomNav.visibility = View.GONE
-                else -> bottomNav.visibility = View.VISIBLE
-            }
-        }
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.register -> bottomNav.visibility = View.GONE
+                R.id.login, R.id.register -> bottomNav.visibility = View.GONE
                 else -> bottomNav.visibility = View.VISIBLE
             }
         }
