@@ -8,16 +8,13 @@ import androidx.room.RewriteQueriesToDropUnusedColumns
 
 @Dao
 interface UserDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
 
-    @Query("SELECT * FROM user WHERE username = :username")
-    @RewriteQueriesToDropUnusedColumns
-    suspend fun getByUsername(username: String): User?
+    @Query("SELECT * FROM user_table WHERE username = :username")
+    suspend fun getByUsername(username: String): User? // Mengembalikan objek User atau null
 
-    @Query("SELECT * FROM user WHERE username = :username AND password = :password")
-    @RewriteQueriesToDropUnusedColumns
-    suspend fun login(username: String, password: String): User?
+    @Query("SELECT * FROM user_table WHERE username = :username AND password = :password")
+    suspend fun login(username: String, password: String): User? // Mengembalikan objek User atau null
 }
-
 
