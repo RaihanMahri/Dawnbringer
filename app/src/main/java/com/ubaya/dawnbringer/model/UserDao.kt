@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.RewriteQueriesToDropUnusedColumns
 
 @Dao
 interface UserDao {
@@ -12,9 +11,8 @@ interface UserDao {
     suspend fun insert(user: User)
 
     @Query("SELECT * FROM user_table WHERE username = :username")
-    suspend fun getByUsername(username: String): User? // Mengembalikan objek User atau null
+    suspend fun getByUsername(username: String): User?
 
     @Query("SELECT * FROM user_table WHERE username = :username AND password = :password")
-    suspend fun login(username: String, password: String): User? // Mengembalikan objek User atau null
+    suspend fun login(username: String, password: String): User?
 }
-

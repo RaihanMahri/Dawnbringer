@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.expensetracker.databinding.FragmentRegisterBinding
+import com.ubaya.dawnbringer.databinding.FragmentRegisterBinding
 import com.ubaya.dawnbringer.model.User
 import com.ubaya.dawnbringer.viewmodel.UserViewModel
 
