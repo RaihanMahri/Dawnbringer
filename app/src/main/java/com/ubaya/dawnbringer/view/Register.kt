@@ -37,10 +37,22 @@ class Register : Fragment() {
             val pass = binding.etPassword.text.toString()
             val repass = binding.etRepeatPassword.text.toString()
 
-            val user = User(username, first, last, pass)
-            viewModel.register(user, repass) { success, message ->
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                if (success) findNavController().popBackStack()
+            when {
+                username.isBlank() -> binding.layoutUsername.error = "Username tidak boleh kosong"
+                pass.length < 6 -> binding.layoutPassword.error = "Minimal 6 karakter"
+                pass != repass -> binding.layoutRepeatPassword.error = "Password tidak sama"
+                else -> {
+                    // Clear previous error
+                    binding.layoutUsername.error = null
+                    binding.layoutPassword.error = null
+                    binding.layoutRepeatPassword.error = null
+
+                    val user = User(username, first, last, pass)
+                    viewModel.register(user, repass) { success, message ->
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                        if (success) findNavController().popBackStack()
+                    }
+                }
             }
         }
     }

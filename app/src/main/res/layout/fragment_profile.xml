@@ -2,31 +2,30 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <data>-->
-<!--        &lt;!&ndash; Binding variable opsional &ndash;&gt;-->
-<!--    </data>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="24dp">
 
+        <!-- Title -->
         <TextView
             android:id="@+id/tvProfileTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profile"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="#333"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- OLD PASSWORD -->
+        <!-- Old Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilOldPassword"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="Old Password"
             app:endIconMode="password_toggle"
             app:layout_constraintTop_toBottomOf="@id/tvProfileTitle"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,15 +36,16 @@
                 android:id="@+id/etOldPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Old Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- NEW PASSWORD -->
+        <!-- New Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNewPassword"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="New Password"
             app:endIconMode="password_toggle"
             app:layout_constraintTop_toBottomOf="@id/tilOldPassword"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,15 +56,16 @@
                 android:id="@+id/etNewPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="New Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- REPEAT PASSWORD -->
+        <!-- Repeat Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilRepeatPassword"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="Repeat Password"
             app:endIconMode="password_toggle"
             app:layout_constraintTop_toBottomOf="@id/tilNewPassword"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,33 +76,41 @@
                 android:id="@+id/etRepeatPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Repeat Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- SIGN OUT -->
-        <Button
-            android:id="@+id/btnSignOut"
-            android:layout_width="wrap_content"
+        <!-- Button Row -->
+        <LinearLayout
+            android:id="@+id/buttonRow"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="SIGN OUT"
-            android:textColor="#6200EE"
-            android:background="@android:color/transparent"
+            android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/tilRepeatPassword"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
-
-        <!-- CHANGE PASSWORD -->
-        <Button
-            android:id="@+id/btnChangePassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CHANGE PASSWORD"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#6200EE"
-            app:layout_constraintTop_toBottomOf="@id/tilRepeatPassword"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSignOut"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SIGN OUT" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChangePassword"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CHANGE PASSWORD" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

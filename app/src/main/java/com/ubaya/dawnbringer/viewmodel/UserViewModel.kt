@@ -8,33 +8,40 @@ import com.ubaya.dawnbringer.model.UserDatabase
 import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
-    private val dao = UserDatabase.getInstance(application).userDao()
 
-    fun register(user: User, repeatPass: String, onResult: (Boolean, String) -> Unit) {
+    private val userDao = UserDatabase.getInstance(application).userDao()
+
+    // Ini adalah repository sederhana langsung menggunakan DAO
+    fun getByUsername(username: String, callback: (User?) -> Unit) {
         viewModelScope.launch {
-            if (user.password != repeatPass) {
-                onResult(false, "Password tidak sama")
-                return@launch
-            }
-
-            val exists = dao.getByUsername(user.username)
-            if (exists != null) {
-                onResult(false, "Username sudah digunakan")
-                return@launch
-            }
-
-            dao.insert(user)
-            onResult(true, "Akun berhasil dibuat")
+            callback(userDao.getByUsername(username))
         }
     }
 
-    fun login(username: String, password: String, onResult: (Boolean, String) -> Unit) {
+    fun insert(user: User) {
         viewModelScope.launch {
-            val user = dao.login(username, password)
+            userDao.insert(user)
+        }
+    }
+
+    fun login(username: String, password: String, callback: (Boolean, String) -> Unit) {
+        viewModelScope.launch {
+            val user = userDao.login(username, password)
             if (user != null) {
-                onResult(true, "Login berhasil")
+                callback(true, "Login berhasil")
             } else {
-                onResult(false, "Username atau password salah")
+                callback(false, "Username atau password salah")
+            }
+        }
+    }
+
+    fun updatePassword(username: String, newPassword: String, callback: () -> Unit) {
+        viewModelScope.launch {
+            val user = userDao.getByUsername(username)
+            if (user != null) {
+                val updatedUser = user.copy(password = newPassword)
+                userDao.insert(updatedUser)
+                callback()
             }
         }
     }

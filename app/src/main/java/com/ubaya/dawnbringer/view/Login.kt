@@ -34,8 +34,13 @@ class Login : Fragment() {
         session = SessionManager(requireContext())
 
         binding.btnSignIn.setOnClickListener {
-            val username = binding.etUsername.text.toString()
-            val password = binding.etPassword.text.toString()
+            val username = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(context, "Username dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             viewModel.login(username, password) { success, message ->
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()

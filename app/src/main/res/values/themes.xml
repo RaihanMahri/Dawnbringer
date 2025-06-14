@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Base Theme with Material 3 -->
     <style name="Base.Theme.Dawnbringer" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Warna branding -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+
+        <!-- Warna background -->
+        <item name="android:colorBackground">@color/background</item>
+
+        <!-- Warna status bar dan navigation bar -->
+        <item name="android:statusBarColor" >@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/background</item>
     </style>
 
+    <!-- Theme alias -->
     <style name="Theme.Dawnbringer" parent="Base.Theme.Dawnbringer" />
+
 </resources>
