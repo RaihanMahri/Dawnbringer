@@ -45,4 +45,23 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+    fun register(user: User, repeatPassword: String, callback: (Boolean, String) -> Unit) {
+        viewModelScope.launch {
+            if (user.password != repeatPassword) {
+                callback(false, "Password tidak cocok")
+                return@launch
+            }
+
+            val existingUser = userDao.getByUsername(user.username)
+            if (existingUser != null) {
+                callback(false, "Username sudah digunakan")
+                return@launch
+            }
+
+            userDao.insert(user)
+            callback(true, "Registrasi berhasil")
+        }
+    }
+
+
 }
