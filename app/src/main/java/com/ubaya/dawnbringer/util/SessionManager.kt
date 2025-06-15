@@ -9,8 +9,9 @@ class SessionManager(context: Context) {
         prefs.edit().putString("logged_user", username).apply()
     }
     fun getUsername(): String? {
-        return prefs.getString("USERNAME", null)
+        return prefs.getString("logged_user", null)
     }
+
 
     fun get(): String? = prefs.getString("logged_user", null)
 

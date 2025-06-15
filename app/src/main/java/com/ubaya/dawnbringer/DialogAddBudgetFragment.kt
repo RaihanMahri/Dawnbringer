@@ -14,6 +14,7 @@ import com.ubaya.dawnbringer.viewmodel.BudgetViewModel
 class DialogAddBudgetFragment(
     private val budget: Budget? = null,
     private val totalExpense: Int = 0,
+    private val username: String,
     private val onSave: () -> Unit
 ) : DialogFragment() {
 
@@ -52,7 +53,7 @@ class DialogAddBudgetFragment(
             }
 
             val newBudget = budget?.copy(name = name, amount = nominal)
-                ?: Budget(name = name, amount = nominal)
+                ?: Budget(name = name, amount = nominal, username = username)
 
             viewModel.addOrUpdateBudget(newBudget, budget != null, totalExpense) { success, msg ->
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()

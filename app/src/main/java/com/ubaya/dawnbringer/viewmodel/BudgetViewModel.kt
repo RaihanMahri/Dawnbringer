@@ -2,34 +2,53 @@ package com.ubaya.dawnbringer.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ubaya.dawnbringer.model.Budget
-import com.ubaya.dawnbringer.model.BudgetDatabase
+import com.ubaya.dawnbringer.model.UserDatabase
 import kotlinx.coroutines.launch
 
 class BudgetViewModel(application: Application) : AndroidViewModel(application) {
-    private val budgetDao = BudgetDatabase.getInstance(application).budgetDao()
+    private val dao = UserDatabase.getInstance(application).budgetDao()
+    val budgets = MutableLiveData<List<Budget>>()
 
-    private val _budgets = MutableLiveData<List<Budget>>()
-    val budgets: LiveData<List<Budget>> = _budgets
-
-    fun loadBudgets() {
+    // Ambil semua budget berdasarkan username
+    fun fetchBudgets(username: String) {
         viewModelScope.launch {
-            _budgets.postValue(budgetDao.getAll())
+            budgets.postValue(dao.getAllByUsername(username)) // Ini oke jika DAO-nya `suspend`
         }
     }
 
+
+    // Tambah atau update budget
     fun addOrUpdateBudget(budget: Budget, isEdit: Boolean, totalExpense: Int, callback: (Boolean, String) -> Unit) {
         viewModelScope.launch {
-            if (isEdit && budget.amount < totalExpense) {
-                callback(false, "Nominal tidak boleh kurang dari total expense: Rp$totalExpense")
-                return@launch
+            if (isEdit) {
+                if (budget.amount < totalExpense) {
+                    callback(false, "Nominal tidak boleh kurang dari total pengeluaran")
+                    return@launch
+                }
+                dao.update(budget)
+                callback(true, "Budget berhasil diperbarui")
+            } else {
+                dao.insert(budget)
+                callback(true, "Budget berhasil ditambahkan")
             }
-            budgetDao.insert(budget)
-            loadBudgets()
-            callback(true, "Budget disimpan")
+            // Refresh list setelah perubahan
+            fetchBudgets(budget.username)
+        }
+    }
+
+    fun delete(budget: Budget) {
+        viewModelScope.launch {
+            dao.delete(budget)
+            fetchBudgets(budget.username)
+        }
+    }
+
+    fun getBudgetById(id: Int, callback: (Budget?) -> Unit) {
+        viewModelScope.launch {
+            callback(dao.getById(id))
         }
     }
 }

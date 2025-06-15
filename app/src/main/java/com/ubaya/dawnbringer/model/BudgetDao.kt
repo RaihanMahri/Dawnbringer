@@ -12,4 +12,16 @@ interface BudgetDao {
 
     @Query("SELECT * FROM Budget")
     suspend fun getAll(): List<Budget>
+
+    @Query("SELECT * FROM budget WHERE username = :username")
+    suspend fun getAllByUsername(username: String): List<Budget>
+
+
+    @Delete
+    suspend fun delete(budget: Budget)
+
+    @Query("SELECT * FROM Budget WHERE id = :id")
+    suspend fun getById(id: Int): Budget?
+
+
 }

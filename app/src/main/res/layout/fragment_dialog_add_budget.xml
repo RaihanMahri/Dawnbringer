@@ -6,43 +6,66 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@android:color/white">
+    android:background="@drawable/bg_dialog_rounded">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Budget"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#333"/>
+        android:textColor="#1A1A1A"
+        android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:id="@+id/txtBudgetName"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Budget Name"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_input"
-        android:padding="12dp"
-        android:inputType="text"/>
+        android:hint="Budget Name"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#6200EE"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
 
-    <EditText
-        android:id="@+id/txtAmount"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtBudgetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nominal"
         android:layout_marginTop="12dp"
-        android:background="@drawable/rounded_input"
-        android:padding="12dp"
-        android:inputType="number"/>
+        android:hint="Nominal"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#6200EE"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSaveBudget"
-        android:layout_width="148dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:backgroundTint="#6200EE"
         android:text="ADD BUDGET"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="16dp"
+        app:iconPadding="12dp"
+        app:backgroundTint="#6200EE"
         android:textColor="@android:color/white"
-        android:textStyle="bold" />
+        android:fontFamily="sans-serif-medium"/>
 </LinearLayout>

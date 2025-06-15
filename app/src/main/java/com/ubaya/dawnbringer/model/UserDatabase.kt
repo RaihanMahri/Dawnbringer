@@ -8,7 +8,7 @@ import com.ubaya.dawnbringer.model.Budget
 import com.ubaya.dawnbringer.model.Expense
 
 
-@Database(entities = [User::class, Budget::class, Expense::class], version = 2)
+@Database(entities = [User::class, Budget::class, Expense::class], version = 3)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun budgetDao(): BudgetDao
