@@ -30,13 +30,14 @@
         android:id="@+id/recyclerBudget"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#00FFFFFF"
         android:clipToPadding="false"
         android:paddingBottom="80dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddBudget"
