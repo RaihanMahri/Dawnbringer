@@ -8,7 +8,7 @@ import com.ubaya.dawnbringer.model.Budget
 import com.ubaya.dawnbringer.model.Expense
 
 
-@Database(entities = [User::class, Budget::class, Expense::class], version = 1)
+@Database(entities = [User::class, Budget::class, Expense::class], version = 2)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun budgetDao(): BudgetDao
@@ -24,7 +24,9 @@ abstract class UserDatabase : RoomDatabase() {
                     context.applicationContext,
                     UserDatabase::class.java,
                     "userdb"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration() // ✅ Tambahkan ini agar auto-reset saat schema berubah
+                    .build()
                 instance = newInstance
                 newInstance
             }
