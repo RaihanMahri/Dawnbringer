@@ -17,7 +17,7 @@
         android:textColor="#333"/>
 
     <EditText
-        android:id="@+id/etBudgetName"
+        android:id="@+id/txtBudgetName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Budget Name"
@@ -27,7 +27,7 @@
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/etNominal"
+        android:id="@+id/txtAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nominal"

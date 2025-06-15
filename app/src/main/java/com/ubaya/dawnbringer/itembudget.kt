@@ -13,10 +13,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [dialog_add_budget.newInstance] factory method to
+ * Use the [itembudget.newInstance] factory method to
  * create an instance of this fragment.
  */
-class dialog_add_budget : Fragment() {
+class itembudget : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +34,7 @@ class dialog_add_budget : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dialog_add_budget, container, false)
+        return inflater.inflate(R.layout.fragment_itembudget, container, false)
     }
 
     companion object {
@@ -44,12 +44,12 @@ class dialog_add_budget : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment dialog_add_budget.
+         * @return A new instance of fragment itembudget.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            dialog_add_budget().apply {
+            itembudget().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -4,10 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.ubaya.dawnbringer.model.Budget
+import com.ubaya.dawnbringer.model.Expense
 
-@Database(entities = [User::class], version = 1)
+
+@Database(entities = [User::class, Budget::class, Expense::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun budgetDao(): BudgetDao
+    abstract fun expenseDao(): ExpenseDao
 
     companion object {
         @Volatile
