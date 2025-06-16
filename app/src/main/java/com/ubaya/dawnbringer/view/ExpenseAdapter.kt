@@ -10,8 +10,10 @@ import java.util.*
 
 class ExpenseAdapter(
     val expenses: List<Expense>,
-    val onClick: (Expense) -> Unit
-) : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
+    private val budgetNames: Map<Int, String>,
+    val onClick: (Expense) -> Unit,
+    val onLongClick: (Expense) -> Unit)
+    : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
     inner class ExpenseViewHolder(val binding: FragmentItemExpenseBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -27,12 +29,12 @@ class ExpenseAdapter(
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val expense = expenses[position]
         with(holder.binding) {
-            txtNote.text = expense.note
             txtNominal.text = "Rp %,d".format(expense.nominal)
             val date = Date(expense.date * 1000)
             val formatter = SimpleDateFormat("dd MMM yyyy", Locale("id", "ID"))
             txtDate.text = formatter.format(date)
-            root.setOnClickListener { onClick(expense) }
+            chipBudget.text = budgetNames[expense.budgetId] ?: ""
+            txtNominal.setOnClickListener { onClick(expense) }
         }
     }
 }

@@ -43,6 +43,12 @@ class ExpenseViewModel(application: Application) : AndroidViewModel(application)
             callback(result)
         }
     }
+    fun loadExpenses(username: String) {
+        viewModelScope.launch {
+            val result = dao.getAllByUsername(username)
+            expenses.postValue(result)
+        }
+    }
 
     // Hitung total pengeluaran untuk budget dan username tertentu
     fun getTotalByBudget(budgetId: Int, username: String, callback: (Int) -> Unit) {

@@ -46,7 +46,7 @@ class Login : Fragment() {
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                 if (success) {
                     session.save(username)
-                    findNavController().navigate(R.id.action_login_to_itemBudgetting)
+                    findNavController().navigate(R.id.action_login_to_itemExpense)
                 }
             }
         }
