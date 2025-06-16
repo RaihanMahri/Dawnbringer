@@ -11,6 +11,14 @@ class SessionManager(context: Context) {
     fun getUsername(): String? {
         return prefs.getString("logged_user", null)
     }
+    fun saveBudgetId(id: Int) {
+        prefs.edit().putInt("selected_budget_id", id).apply()
+    }
+
+    fun getBudgetId(): Int? {
+        val id = prefs.getInt("selected_budget_id", -1)
+        return if (id != -1) id else null
+    }
 
 
     fun get(): String? = prefs.getString("logged_user", null)

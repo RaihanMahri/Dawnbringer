@@ -11,6 +11,9 @@ import com.ubaya.dawnbringer.databinding.FragmentBudgettingBinding
 import com.ubaya.dawnbringer.model.Budget
 import com.ubaya.dawnbringer.util.SessionManager
 import com.ubaya.dawnbringer.viewmodel.BudgetViewModel
+import androidx.navigation.fragment.findNavController
+import com.ubaya.dawnbringer.R
+
 
 class Budgetting : Fragment() {
     private lateinit var binding: FragmentBudgettingBinding
@@ -33,10 +36,14 @@ class Budgetting : Fragment() {
         binding.recyclerBudget.layoutManager = LinearLayoutManager(requireContext())
         viewModel.budgets.observe(viewLifecycleOwner) {
             budgets = it
-            binding.recyclerBudget.adapter = BudgetAdapter(it) { budget ->
+            binding.recyclerBudget.adapter = BudgetAdapter(it, onClick = { budget ->
+                session.saveBudgetId(budget.id)
+                findNavController().navigate(R.id.action_itemBudgetting_to_itemExpense)
+            }, onEdit = { budget ->
                 showDialog(budget, username)
-            }
+            })
         }
+
 
         binding.fabAddBudget.setOnClickListener {
             showDialog(null, username)

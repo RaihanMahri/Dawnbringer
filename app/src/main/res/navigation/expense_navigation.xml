@@ -19,6 +19,13 @@
         android:name="com.ubaya.dawnbringer.view.Budgetting"
         android:label="fragment_budgetting"
         tools:layout="@layout/fragment_budgetting" >
+        <argument
+            android:name="budgetId"
+            app:argType="integer" />
+
+        <argument
+            android:name="username"
+            app:argType="string" />
         <action
             android:id="@+id/action_itemBudgetting_to_itemReport"
             app:destination="@id/itemReport" />
@@ -43,6 +50,13 @@
         android:name="com.ubaya.dawnbringer.view.ExpenseTrack"
         android:label="fragment_expense_track"
         tools:layout="@layout/fragment_expense_track" >
+        <argument
+            android:name="budgetId"
+            app:argType="integer" />
+
+        <argument
+            android:name="username"
+            app:argType="string" />
         <action
             android:id="@+id/action_itemExpense_to_itemBudgetting"
             app:destination="@id/itemBudgetting" />

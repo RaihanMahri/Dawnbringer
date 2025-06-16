@@ -7,8 +7,10 @@ import androidx.room.PrimaryKey
 data class Expense(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val amount: Int,
+    val note: String,
+    val nominal: Int,
+    val date: Long,
     val budgetId: Int,
-    val description: String,
-    val timestamp: Long // untuk waktu pengeluaran
+    val username: String
 )
+

@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ubaya.dawnbringer.databinding.FragmentItembudgetBinding
 import com.ubaya.dawnbringer.model.Budget
 
-class BudgetAdapter(val budgets: List<Budget>, val onEdit: (Budget) -> Unit) :
-    RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
+class BudgetAdapter(
+    val budgets: List<Budget>,
+    val onClick: (Budget) -> Unit,
+    val onEdit: (Budget) -> Unit
+) : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
 
     inner class BudgetViewHolder(val binding: FragmentItembudgetBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -24,8 +27,10 @@ class BudgetAdapter(val budgets: List<Budget>, val onEdit: (Budget) -> Unit) :
         with(holder.binding) {
             txtBudgetName.text = item.name
             txtAmount.text = "Rp %,d".format(item.amount)
-            root.setOnClickListener {
+            root.setOnClickListener { onClick(item) }
+            root.setOnLongClickListener {
                 onEdit(item)
+                true
             }
         }
     }

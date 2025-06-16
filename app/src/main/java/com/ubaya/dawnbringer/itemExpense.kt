@@ -13,10 +13,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [dialog_expense_detail.newInstance] factory method to
+ * Use the [itemExpense.newInstance] factory method to
  * create an instance of this fragment.
  */
-class dialog_expense_detail : Fragment() {
+class itemExpense : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +34,7 @@ class dialog_expense_detail : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dialog_expense_detail, container, false)
+        return inflater.inflate(R.layout.fragment_item_expense, container, false)
     }
 
     companion object {
@@ -44,12 +44,12 @@ class dialog_expense_detail : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment dialog_expense_detail.
+         * @return A new instance of fragment itemExpense.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            dialog_expense_detail().apply {
+            itemExpense().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
