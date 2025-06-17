@@ -5,56 +5,72 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ubaya.dawnbringer.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Report.newInstance] factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ubaya.dawnbringer.databinding.FragmentReportBinding
+import com.ubaya.dawnbringer.model.Budget
+import com.ubaya.dawnbringer.model.BudgetReport
+import com.ubaya.dawnbringer.util.SessionManager
+import com.ubaya.dawnbringer.viewmodel.BudgetViewModel
+import com.ubaya.dawnbringer.viewmodel.ExpenseViewModel
 class Report : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentReportBinding? = null
+    private val binding get() = _binding!!
+    private val budgetViewModel: BudgetViewModel by viewModels()
+    private val expenseViewModel: ExpenseViewModel by viewModels()
+    private lateinit var session: SessionManager
+    private var username: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+    ): View {
+        _binding = FragmentReportBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        session = SessionManager(requireContext())
+        username = session.get()
+        binding.rvReport.layoutManager = LinearLayoutManager(requireContext())
+        username?.let { user ->
+            budgetViewModel.budgets.observe(viewLifecycleOwner) { budgets ->
+                loadReport(budgets, user)
+            }
+            budgetViewModel.fetchBudgets(user)
+        }
+
+    }
+    private fun loadReport(budgets: List<Budget>, user: String) {
+        if (budgets.isEmpty()) {
+            binding.rvReport.adapter = ReportAdapter(emptyList())
+            binding.tvTotalReport.text = "Total Expenses / Budget: Rp 0 / Rp 0"
+            return
+        }
+        val items = mutableListOf<BudgetReport>()
+        var totalExpense = 0
+        var totalBudget = 0
+        var remaining = budgets.size
+        budgets.forEach { budget ->
+            totalBudget += budget.amount
+            expenseViewModel.getTotalByBudget(budget.id, user) { used ->
+                items.add(BudgetReport(budget, used))
+                totalExpense += used
+                remaining -= 1
+                if (remaining == 0) {
+                    binding.rvReport.adapter = ReportAdapter(items)
+                    binding.tvTotalReport.text = "Total Expenses / Budget: " +"Rp %,d / Rp %,d".format(totalExpense, totalBudget)
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment report.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Report().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }
+
+
+
