@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import android.content.Intent
 import com.ubaya.dawnbringer.R
 import com.ubaya.dawnbringer.databinding.FragmentLoginBinding
 import com.ubaya.dawnbringer.util.SessionManager
@@ -46,13 +47,26 @@ class Login : Fragment() {
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                 if (success) {
                     session.save(username)
-                    findNavController().navigate(R.id.action_login_to_itemExpense)
+
+                    val dest = findNavController().currentDestination?.id
+                    if (dest == R.id.login2) {
+                        val intent = Intent(requireActivity(), MainActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        findNavController().navigate(R.id.action_login_to_itemExpense)
+                    }
                 }
             }
         }
 
         binding.btnSignUp.setOnClickListener {
-            findNavController().navigate(R.id.action_login_to_register)
+            val dest = findNavController().currentDestination?.id
+            if (dest == R.id.login2) {
+                findNavController().navigate(R.id.action_login2_to_register2)
+            } else {
+                findNavController().navigate(R.id.action_login_to_register)
+            }
         }
     }
 }
