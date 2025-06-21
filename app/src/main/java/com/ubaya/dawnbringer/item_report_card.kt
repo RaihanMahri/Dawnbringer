@@ -16,7 +16,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [item_report_card.newInstance] factory method to
  * create an instance of this fragment.
  */
-class item_report_card : Fragment() {
+class  item_report_card : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

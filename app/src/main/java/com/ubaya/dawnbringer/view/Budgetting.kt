@@ -11,13 +11,14 @@ import com.ubaya.dawnbringer.databinding.FragmentBudgettingBinding
 import com.ubaya.dawnbringer.model.Budget
 import com.ubaya.dawnbringer.util.SessionManager
 import com.ubaya.dawnbringer.viewmodel.BudgetViewModel
+import com.ubaya.dawnbringer.viewmodel.ExpenseViewModel
 import androidx.navigation.fragment.findNavController
 import com.ubaya.dawnbringer.R
-
 
 class Budgetting : Fragment() {
     private lateinit var binding: FragmentBudgettingBinding
     private val viewModel: BudgetViewModel by viewModels()
+    private val expenseViewModel: ExpenseViewModel by viewModels()
     private lateinit var session: SessionManager
     private var budgets = listOf<Budget>()
 
@@ -34,28 +35,40 @@ class Budgetting : Fragment() {
         val username = session.get() ?: return
 
         binding.recyclerBudget.layoutManager = LinearLayoutManager(requireContext())
+
         viewModel.budgets.observe(viewLifecycleOwner) {
             budgets = it
-            binding.recyclerBudget.adapter = BudgetAdapter(it, onClick = { budget ->
-                session.saveBudgetId(budget.id)
-                findNavController().navigate(R.id.action_itemBudgetting_to_itemExpense)
-            }, onEdit = { budget ->
-                showDialog(budget, username)
-            })
+            binding.recyclerBudget.adapter = BudgetAdapter(
+                it,
+                onClick = { budget ->
+                    session.saveBudgetId(budget.id)
+                    findNavController().navigate(R.id.action_itemBudgetting_to_itemExpense)
+                },
+                onEdit = { budget ->
+                    // Ambil total pengeluaran dulu
+                    expenseViewModel.getTotalByBudget(budget.id, username) { totalUsed ->
+                        val dialog = DialogEditBudgetFragment(
+                            budget = budget,
+                            totalExpense = totalUsed
+                        ) {
+                            viewModel.fetchBudgets(username)
+                        }
+                        dialog.show(childFragmentManager, "EditBudget")
+                    }
+                }
+            )
         }
-
 
         binding.fabAddBudget.setOnClickListener {
-            showDialog(null, username)
+            val dialog = DialogAddBudgetFragment(
+                budget = null,
+                username = username
+            ) {
+                viewModel.fetchBudgets(username)
+            }
+            dialog.show(childFragmentManager, "AddBudget")
         }
 
-        viewModel.fetchBudgets(username) // ✅ Ganti dengan fungsi yang benar
-    }
-
-    private fun showDialog(budget: Budget?, username: String) {
-        val dialog = DialogAddBudgetFragment(budget = budget, username = username) {
-            viewModel.fetchBudgets(username)
-        }
-        dialog.show(childFragmentManager, "AddBudget")
+        viewModel.fetchBudgets(username)
     }
 }

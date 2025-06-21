@@ -43,7 +43,7 @@ class Report : Fragment() {
     private fun loadReport(budgets: List<Budget>, user: String) {
         if (budgets.isEmpty()) {
             binding.rvReport.adapter = ReportAdapter(emptyList())
-            binding.tvTotalReport.text = "Total Expenses / Budget: Rp 0 / Rp 0"
+            binding.tvTotalReport.text = "Total Expenses / Budget: IDR 0 / IDR 0"
             return
         }
         val items = mutableListOf<BudgetReport>()
@@ -58,7 +58,9 @@ class Report : Fragment() {
                 remaining -= 1
                 if (remaining == 0) {
                     binding.rvReport.adapter = ReportAdapter(items)
-                    binding.tvTotalReport.text = "Total Expenses / Budget: " +"Rp %,d / Rp %,d".format(totalExpense, totalBudget)
+                    binding.tvTotalReport.text = "Total Expenses / Budget: "
+                    binding.tvTotalReport2.text = "IDR %,d / IDR %,d".format(totalExpense, totalBudget)
+
                 }
             }
         }

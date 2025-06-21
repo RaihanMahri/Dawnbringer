@@ -26,8 +26,9 @@ class BudgetAdapter(
         val item = budgets[position]
         with(holder.binding) {
             txtBudgetName.text = item.name
-            txtAmount.text = "Rp %,d".format(item.amount)
+            txtAmount.text = "IDR %,d".format(item.amount)
             root.setOnClickListener { onClick(item) }
+            txtBudgetName.setOnClickListener { onEdit(item) }
             root.setOnLongClickListener {
                 onEdit(item)
                 true

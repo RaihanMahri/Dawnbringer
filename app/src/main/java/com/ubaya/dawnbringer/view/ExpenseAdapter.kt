@@ -29,12 +29,14 @@ class ExpenseAdapter(
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val expense = expenses[position]
         with(holder.binding) {
-            txtNominal.text = "Rp %,d".format(expense.nominal)
+            txtNominal.text = "IDR %,d".format(expense.nominal)
             val date = Date(expense.date * 1000)
-            val formatter = SimpleDateFormat("dd MMM yyyy", Locale("id", "ID"))
+            val formatter = SimpleDateFormat("dd MMM yyyy HH:mm", Locale("id", "ID"))
             txtDate.text = formatter.format(date)
             chipBudget.text = budgetNames[expense.budgetId] ?: ""
             txtNominal.setOnClickListener { onClick(expense) }
         }
     }
+
+
 }

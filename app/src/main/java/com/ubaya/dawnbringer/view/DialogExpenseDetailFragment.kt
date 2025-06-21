@@ -21,7 +21,7 @@ class DialogExpenseDetailFragment(private val expenseId: Int) : DialogFragment()
         expenseViewModel.getExpenseById(expenseId) { expense ->
             expense?.let {
                 binding.txtNote.text = it.note
-                binding.txtNominal.text = "Rp %,d".format(it.nominal)
+                binding.txtNominal.text = "IDR %,d".format(it.nominal)
 
                 val date = Date(it.date * 1000)
                 val formatter = SimpleDateFormat("dd MMM yyyy HH:mm", Locale("id", "ID"))

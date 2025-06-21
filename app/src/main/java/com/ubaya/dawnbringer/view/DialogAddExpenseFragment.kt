@@ -88,8 +88,13 @@ class DialogAddExpenseFragment(
         expenseViewModel.getTotalByBudget(budget.id, username) { total ->
             usedAmount = total
             val remaining = budget.amount - total
-            val percent = if (budget.amount == 0) 0 else (remaining * 100 / budget.amount)
+            val percent = if (budget.amount == 0) 0 else (total * 100 / budget.amount)
             binding.progressBudget.progress = percent
+
+            // Menampilkan teks "Rp digunakan / Rp max"
+            binding.tvReportUsed.text = "IDR %,d".format(total)
+            binding.tvReportMax.text = "IDR %,d".format(budget.amount)
         }
     }
+
 }

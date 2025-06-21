@@ -29,10 +29,10 @@ class ReportAdapter(
         val item = items[position]
         with(holder.binding) {
             tvReportBudgetName.text = item.budget.name
-            tvReportUsed.text = "Rp %,d".format(item.used)
-            tvReportMax.text = "/ Rp %,d".format(item.budget.amount)
+            tvReportUsed.text = "IDR %,d".format(item.used)
+            tvReportMax.text = "IDR %,d".format(item.budget.amount)
             val remaining = item.budget.amount - item.used
-            tvReportSisa.text = "Sisa: Rp %,d".format(remaining)
+            tvReportSisa.text = "Sisa: IDR %,d".format(remaining)
             val progress = if (item.budget.amount == 0) 0 else (item.used * 100 / item.budget.amount)
             pbReportProgress.progress = progress
         }
