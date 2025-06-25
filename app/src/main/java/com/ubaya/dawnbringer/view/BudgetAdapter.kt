@@ -27,7 +27,7 @@ class BudgetAdapter(
         with(holder.binding) {
             txtBudgetName.text = item.name
             txtAmount.text = "IDR %,d".format(item.amount)
-            root.setOnClickListener { onClick(item) }
+//            root.setOnClickListener { onClick(item) }
             txtBudgetName.setOnClickListener { onEdit(item) }
             root.setOnLongClickListener {
                 onEdit(item)
