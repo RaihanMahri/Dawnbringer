@@ -7,9 +7,7 @@
     android:padding="24dp"
     tools:context=".view.Login">
 
-    <!-- Logo -->
 
-    <!-- Form Card -->
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="200dp"
@@ -43,7 +41,7 @@
             android:paddingEnd="20dp"
             android:paddingBottom="20dp">
 
-            <!-- Username -->
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -61,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="12dp" />
 
-            <!-- Password -->
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -80,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <!-- Buttons -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

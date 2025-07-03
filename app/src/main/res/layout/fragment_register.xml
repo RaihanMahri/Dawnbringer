@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Username -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutUsername"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- First Name -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutFirstName"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Last Name -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutLastName"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Password -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutPassword"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -86,7 +86,7 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Repeat Password -->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutRepeatPassword"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -105,7 +105,7 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Create Account Button -->
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCreateAccount"
         style="@style/Widget.Material3.Button"

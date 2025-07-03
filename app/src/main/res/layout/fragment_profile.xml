@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:padding="24dp">
 
-        <!-- Title -->
+
         <TextView
             android:id="@+id/tvProfileTitle"
             android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Old Password -->
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilOldPassword"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -39,7 +39,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- New Password -->
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilNewPassword"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -59,7 +59,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Repeat Password -->
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilRepeatPassword"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -79,7 +79,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Button Row -->
+
         <LinearLayout
             android:id="@+id/buttonRow"
             android:layout_width="0dp"
