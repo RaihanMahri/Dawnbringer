@@ -23,7 +23,7 @@ class DialogEditBudgetFragment(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentDialogEditBudgetBinding.inflate(LayoutInflater.from(context))
 
-        // Pre-fill data
+        //pre-fill data
         binding.txtBudgetName.setText(budget.name)
         binding.txtAmount.setText(budget.amount.toString())
         binding.btnUpdateBudget.text = "UPDATE"

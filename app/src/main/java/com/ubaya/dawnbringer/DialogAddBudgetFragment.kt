@@ -24,7 +24,7 @@ class DialogAddBudgetFragment(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentDialogAddBudgetBinding.inflate(LayoutInflater.from(context))
 
-        // Kalau edit mode
+        //  edit mode
         if (budget != null) {
             binding.txtBudgetName.setText(budget.name)
             binding.txtAmount.setText(budget.amount.toString())

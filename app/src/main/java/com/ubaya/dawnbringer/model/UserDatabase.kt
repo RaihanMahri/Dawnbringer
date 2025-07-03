@@ -25,7 +25,7 @@ abstract class UserDatabase : RoomDatabase() {
                     UserDatabase::class.java,
                     "userdb"
                 )
-                    .fallbackToDestructiveMigration() // ✅ Tambahkan ini agar auto-reset saat schema berubah
+                    .fallbackToDestructiveMigration()
                     .build()
                 instance = newInstance
                 newInstance

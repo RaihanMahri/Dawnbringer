@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
-        // VERY IMPORTANT: Link NavController with BottomNavigationView
+        // Link bottomnavigationview
         NavigationUI.setupWithNavController(bottomNav, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {

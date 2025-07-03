@@ -91,7 +91,7 @@ class DialogAddExpenseFragment(
             val percent = if (budget.amount == 0) 0 else (total * 100 / budget.amount)
             binding.progressBudget.progress = percent
 
-            // Menampilkan teks "Rp digunakan / Rp max"
+            // format menampilkan teks "Rp" format penulisan rupiah
             binding.tvReportUsed.text = "IDR %,d".format(total)
             binding.tvReportMax.text = "IDR %,d".format(budget.amount)
         }

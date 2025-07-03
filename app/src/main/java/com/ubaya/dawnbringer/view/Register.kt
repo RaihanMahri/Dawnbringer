@@ -42,7 +42,7 @@ class Register : Fragment() {
                 pass.length < 6 -> binding.layoutPassword.error = "Minimal 6 karakter"
                 pass != repass -> binding.layoutRepeatPassword.error = "Password tidak sama"
                 else -> {
-                    // Clear previous error
+                    //error
                     binding.layoutUsername.error = null
                     binding.layoutPassword.error = null
                     binding.layoutRepeatPassword.error = null

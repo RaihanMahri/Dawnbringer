@@ -45,7 +45,7 @@ class Budgetting : Fragment() {
                     findNavController().navigate(R.id.action_itemBudgetting_to_itemExpense)
                 },
                 onEdit = { budget ->
-                    // Ambil total pengeluaran dulu
+                    // Ambil  pengeluaran
                     expenseViewModel.getTotalByBudget(budget.id, username) { totalUsed ->
                         val dialog = DialogEditBudgetFragment(
                             budget = budget,
