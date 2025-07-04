@@ -15,7 +15,7 @@ class BudgetViewModel(application: Application) : AndroidViewModel(application) 
     // Ambil semua budget berdasarkan username
     fun fetchBudgets(username: String) {
         viewModelScope.launch {
-            budgets.postValue(dao.getAllByUsername(username)) // Ini oke jika DAO-nya `suspend`
+            budgets.postValue(dao.getAllByUsername(username))
         }
     }
 
